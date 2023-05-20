@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2799,7 +2799,7 @@ GameObject:
   - component: {fileID: 1183483898}
   - component: {fileID: 1183483903}
   m_Layer: 0
-  m_Name: Punk_an2
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6725,8 +6725,9 @@ GameObject:
   - component: {fileID: 2138857995}
   - component: {fileID: 2138857997}
   - component: {fileID: 2138857998}
+  - component: {fileID: 2138857999}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Companion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6773,7 +6774,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 1899033151, guid: d87e8176a6b5e924b9130d9283859b2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6792,8 +6793,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138857991}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.82, y: 7.38, z: -0.01335315}
-  m_LocalScale: {x: 0.5011677, y: 0.57203835, z: 1}
+  m_LocalPosition: {x: 12.746, y: 6.8737, z: -0.01335315}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -6837,7 +6838,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.5, y: 1.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6862,6 +6863,8 @@ MonoBehaviour:
   Companion: {fileID: 2138857991}
   rb: {fileID: 2138857995}
   FlySpeed: 1
+  CDownDefaultTicks: 100
+  cam: {fileID: 2039389764}
 --- !u!114 &2138857998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6876,3 +6879,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedOfFoll: 5
   rb: {fileID: 0}
+--- !u!95 &2138857999
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138857991}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8e6e728fc1b80334f859be671002fc48, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

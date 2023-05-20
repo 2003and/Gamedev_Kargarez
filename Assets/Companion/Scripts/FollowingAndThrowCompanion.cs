@@ -47,7 +47,7 @@ public class FollowingAndThrowCompanion : MonoBehaviour
         //ј так как этот класс будет статичным, то к его переменным можно будет обращатьс€ отовсюду,
         //» смотреть их и измен€ть
         //¬от так как-то
-        if (Ulti.isThrown == false)
+        if ((Ulti.isThrown == false) & (Ulti.CDown==0))
         //{
             transform.position = Vector2.MoveTowards(transform.position, target.position, speedOfFoll * Time.deltaTime);
         //}
