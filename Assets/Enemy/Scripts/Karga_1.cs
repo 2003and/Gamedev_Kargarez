@@ -19,6 +19,15 @@ public class Karga_1 : MonoBehaviour
     private Rigidbody2D rb;
     Transform target;
 
+    public float health = 5f;
+
+    public GameObject item1;
+    public GameObject item2;
+    public GameObject item3;
+    public GameObject item4;
+    public float chance = 25;
+    float random;
+
     void Start()
     {
 
@@ -79,6 +88,40 @@ public class Karga_1 : MonoBehaviour
         {
             pathIndex++;
         }
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+
+            random = UnityEngine.Random.Range(0, 100);
+            if (random <= chance)
+            {
+                if (random <= 6)
+                {
+                    GameObject Item = Instantiate(item1, transform.position, Quaternion.identity);
+                }
+
+                if (random >= 7 && random <= 12)
+                {
+                    GameObject Item = Instantiate(item2, transform.position, Quaternion.identity);
+                }
+
+                if (random >= 13 && random <= 18)
+                {
+                    GameObject Item = Instantiate(item3, transform.position, Quaternion.identity);
+                }
+
+                if (random >= 19 && random <= 25)
+                {
+                    GameObject Item = Instantiate(item4, transform.position, Quaternion.identity);
+                }
+            }
+        }
+    }
+    
+    public void TakeDamege(int damage)
+    {
+        health -= damage;
     }
 }
 
