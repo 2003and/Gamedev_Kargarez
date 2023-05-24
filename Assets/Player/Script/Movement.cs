@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
     Animator animator;
 
     public float HP = 6;
+    private bool isInvincible = false;
 
     void Start()
     {
@@ -52,17 +53,19 @@ public class Movement : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") && !isInvincible)
         {
-            HP -= 1;
+            if (!isInvincible)
+            {
+                HP -= 1;
+                isInvincible = true;
+                Invoke("DisableInvincibility", 1.5f); // Выключение бессмертия через 1.5 секунды
+            }
         }
     }
 
-  //  void OnCollision2D(Collider2D collision)
-    //{
-   //     if(collision.gameObject.tag == "Enemy")
-   //    {
-    //        HP -= 1;
-    //    }
-  //  }
+    void DisableInvincibility()
+    {
+        isInvincible = false;
+    }
 }
