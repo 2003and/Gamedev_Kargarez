@@ -8,6 +8,7 @@ TagManager:
   - HealPotion
   - DmgIncrease
   - DmgDecrease
+  - Companion
   layers:
   - Default
   - TransparentFX

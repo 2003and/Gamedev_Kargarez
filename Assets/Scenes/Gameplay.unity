@@ -3339,7 +3339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc04f11791b33e46b39c4faa49c78f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 3
   health: 3
   item1: {fileID: 7592596454558127986, guid: 71c1b8f5fc3c6ae43a03653ec661fc33, type: 3}
   item2: {fileID: 1964209186926255347, guid: 0c891f66b5da99a4094a956505bf988e, type: 3}
@@ -6997,7 +6997,7 @@ GameObject:
   - component: {fileID: 2138857999}
   m_Layer: 0
   m_Name: Companion
-  m_TagString: Untagged
+  m_TagString: Companion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7100,7 +7100,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -7132,6 +7132,8 @@ MonoBehaviour:
   Companion: {fileID: 2138857991}
   rb: {fileID: 2138857995}
   FlySpeed: 5
+  CDownDefaultTicks: 50
+  cam: {fileID: 2039389764}
 --- !u!114 &2138857998
 MonoBehaviour:
   m_ObjectHideFlags: 0

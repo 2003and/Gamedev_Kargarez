@@ -28,6 +28,13 @@ public class Karga_1 : MonoBehaviour
     public float chance = 25;
     float random;
 
+    void OnTriggerEnter(Collider other){
+        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAa");
+        if (other.tag == "Companion"){
+            TakeDamege(2);
+        }
+    }
+
     void Start()
     {
 

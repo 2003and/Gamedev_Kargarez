@@ -13,6 +13,7 @@ namespace GoodiesForFollowing
         public float FlySpeed = 5f;
         //Переменная для фиксации состояния "Кастую ульту"
         public static bool isThrown = false;
+        private Vector2 veryFirstStartPosition;
         private Vector2 startPosition;
         private Vector2 endPosition;
         private float targetX = 0f;
@@ -32,17 +33,29 @@ namespace GoodiesForFollowing
             player = GameObject.FindGameObjectWithTag("Player");
         }
 
+        // void OnCollisionEnter (GameObject other) {
+        //     if (other.tag == "Enemy"){
+        //         other.GetComponent<Karga_1>().TakeDamege(2);
+        //     }
+        //     isThrown = false;
+        //     CDown=(int)(CDownDefaultTicks/2);
+        // }
+
         void Update()
         {
-
-            if (Input.GetButtonDown("Fire1") && !isThrown)
+            if (Input.GetButtonDown("Fire1") && !isThrown && CDown<=0)
             {
+                Debug.Log("pisyapopa");
                 //Начинает кастовать
                 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
                 isThrown = true;
                 startPosition = transform.position;
-                endPosition = new Vector2(startPosition.x + targetX, startPosition.y);
+                veryFirstStartPosition = transform.position;
+
+                endPosition = new Vector2(mousePos.x, mousePos.y);
+            } else {
+                CDown -= 1;
             }
             //Пока кастует..
             if (isThrown)
@@ -50,16 +63,30 @@ namespace GoodiesForFollowing
                 //Делает все вычисления, передвигается, всё чики пуки
                 startPosition = transform.position;
                 targetX = 5f;
-                transform.position = Vector2.MoveTowards(startPosition, endPosition, FlySpeed * Time.deltaTime);
 
                 //И когда дистанция сократилась достаточно...
-                if (Vector2.Distance(transform.position, endPosition) < 0.5f)
+                transform.position = Vector2.MoveTowards(startPosition, endPosition, FlySpeed * Time.deltaTime);
+                if ((Vector2.Distance(transform.position, endPosition) < 0.5f) || (Vector2.Distance(transform.position, veryFirstStartPosition) > 5f))
                 {
                     //То состояние "Кастую ульту" выключается
-
+                    CDown=CDownDefaultTicks;
                     isThrown = false;
                 }
+
+                // //И когда дистанция сократилась достаточно...
+                // if ((Vector2.Distance(transform.position, endPosition) < 0.5f) || (Vector2.Distance(transform.position, veryFirstStartPosition) > 5f))
+                // {
+                //     transform.position = Vector2.MoveTowards(startPosition, endPosition, FlySpeed * Time.deltaTime);
+                // } else {
+                //     //То состояние "Кастую ульту" выключается
+                //     CDown=CDownDefaultTicks;
+                //     isThrown = false;
+                // }
             }
+
+        }
+
+        void DamageKarga(){
 
         }
 
