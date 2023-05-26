@@ -14,6 +14,11 @@ public class HealthBar : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (HP > 6) 
+        { 
+            HP = 6; 
+        }
+
         if (HP == 6)
         {
             hearts[0].sprite = full;
