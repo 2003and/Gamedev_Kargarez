@@ -29,6 +29,7 @@ public class Karga_1 : MonoBehaviour
     public float chance = 25;
     public GameObject companionLink;
     float random;
+    private SpriteRenderer sprite;
 
     void OnTriggerEnter(Collider other){
         Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAa");
@@ -39,6 +40,7 @@ public class Karga_1 : MonoBehaviour
 
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
 
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
@@ -77,6 +79,7 @@ public class Karga_1 : MonoBehaviour
 
     void Update()
     {
+        
         if (stunCounter==0){
             if (target.position.x >= 10 && target.position.x <= 21 && target.position.y >= 3 && target.position.y <= 9)
             {
@@ -91,7 +94,11 @@ public class Karga_1 : MonoBehaviour
             Vector2 target_path = new Vector2(path[pathIndex].x * cellSize + cellSize / 2, path[pathIndex].y * cellSize + cellSize / 2);
             float distance = Vector2.Distance(transform.position, target_path);
             Vector2 direction = target_path - (Vector2)transform.position;
-
+            if (direction.x > 0) {
+                sprite.flipX = false;
+            } else {
+                sprite.flipX = true;
+            }
             transform.position = Vector2.MoveTowards(transform.position, target_path, speed * Time.deltaTime);
 
             if (pathIndex < path.Length - 1 && (distance < 0.1f))

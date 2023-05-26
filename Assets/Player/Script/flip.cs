@@ -6,6 +6,7 @@ public class flip : MonoBehaviour
 {
     // private Vector3 originalScale;
     private SpriteRenderer sprite;
+    // private Camera cam;
     void Start ()
     {
         sprite = GetComponent<SpriteRenderer>();
@@ -21,12 +22,11 @@ public class flip : MonoBehaviour
         Debug.Log("Click Position: " + clickPosition);
         // GetComponent<Canvas>();
 
-        if (mousePosition.x < 1920)
+        if (mousePosition.x < Screen.width/2)
         {
             // gameObject.transform.localScale = new Vector3 (-originalScale.x,originalScale.y,originalScale.z );
             sprite.flipX = true;
-        }
-        else{
+        } else {
             // gameObject.transform.localScale = new Vector3 (originalScale.x,originalScale.y,originalScale.z);
             sprite.flipX = false;
         }

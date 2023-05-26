@@ -26,6 +26,7 @@ public class Movement : MonoBehaviour
     {
         direction.x = Input.GetAxisRaw("Horizontal");
         direction.y = Input.GetAxisRaw("Vertical");
+        direction.Normalize();
         animator.SetBool("Running", Math.Abs(direction.x) + Math.Abs(direction.y) > 0);
     }
 
