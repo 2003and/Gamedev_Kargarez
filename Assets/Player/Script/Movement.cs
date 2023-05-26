@@ -14,8 +14,7 @@ public class Movement : MonoBehaviour
     private int hp = 6;
     Animator animator;
 
-    public float HP = 6;
-    private bool isInvincible = false;
+
 
     void Start()
     {
@@ -35,37 +34,5 @@ public class Movement : MonoBehaviour
         rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("HealPotion"))
-        {
-            HP = 6;
-            Destroy(collision.gameObject);
-        }
-
-        if (collision.CompareTag("DmgIncrease"))
-        {
-            Destroy(collision.gameObject);
-        }
-
-        if (collision.CompareTag("DmgDecrease"))
-        {
-            Destroy(collision.gameObject);
-        }
-
-        if (collision.CompareTag("Enemy") && !isInvincible)
-        {
-            if (!isInvincible)
-            {
-                HP -= 1;
-                isInvincible = true;
-                Invoke("DisableInvincibility", 1.5f); // Выключение бессмертия через 1.5 секунды
-            }
-        }
-    }
-
-    void DisableInvincibility()
-    {
-        isInvincible = false;
-    }
+   
 }

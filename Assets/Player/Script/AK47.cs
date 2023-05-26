@@ -20,11 +20,13 @@ public class AK47 : MonoBehaviour
 
         if (rotateZ > 90 || rotateZ < -90)
         {
-            Local.y = -1f;
+            Local.y = -0.75f;
+            Local.x = 0.75f;
         }
         else
         {
-            Local.y = +1f;
+            Local.y = +0.75f;
+            Local.x = 0.75f;
         }
 
         transform.localScale = Local;
