@@ -14,6 +14,7 @@ public class Karga_1 : MonoBehaviour
     private int2 gridSize = new int2(50, 50);
     private Pathfinding pathfinding;
     public float speed = 4;
+    public int stunCounter=0;
     NativeArray<PathNode> pathNodeArray;
 
     private Rigidbody2D rb;
@@ -26,6 +27,7 @@ public class Karga_1 : MonoBehaviour
     public GameObject item3;
     public GameObject item4;
     public float chance = 25;
+    public GameObject companionLink;
     float random;
 
     void OnTriggerEnter(Collider other){
@@ -75,57 +77,68 @@ public class Karga_1 : MonoBehaviour
 
     void Update()
     {
-        if (target.position.x >= 10 && target.position.x <= 21 && target.position.y >= 3 && target.position.y <= 9)
-        {
-
-            grid.GetXY(transform.position, out int xStart, out int yStart);
-            grid.GetXY(target.position, out int x, out int y);
-            path = pathfinding.FindPath(new int2(xStart, yStart), new int2(x, y), grid);
-            pathIndex = 1;
-        }
-
-        if (path == null || path.Length == 0) return;
-        Vector2 target_path = new Vector2(path[pathIndex].x * cellSize + cellSize / 2, path[pathIndex].y * cellSize + cellSize / 2);
-        float distance = Vector2.Distance(transform.position, target_path);
-        Vector2 direction = target_path - (Vector2)transform.position;
-
-        transform.position = Vector2.MoveTowards(transform.position, target_path, speed * Time.deltaTime);
-
-        if (pathIndex < path.Length - 1 && (distance < 0.1f))
-        {
-            pathIndex++;
-        }
-
-        if (health <= 0)
-        {
-            Destroy(gameObject);
-
-            random = UnityEngine.Random.Range(0, 100);
-            if (random <= chance)
+        if (stunCounter==0){
+            if (target.position.x >= 10 && target.position.x <= 21 && target.position.y >= 3 && target.position.y <= 9)
             {
-                if (random <= 6)
-                {
-                    GameObject Item = Instantiate(item1, transform.position, Quaternion.identity);
-                }
 
-                if (random >= 7 && random <= 12)
-                {
-                    GameObject Item = Instantiate(item2, transform.position, Quaternion.identity);
-                }
+                grid.GetXY(transform.position, out int xStart, out int yStart);
+                grid.GetXY(target.position, out int x, out int y);
+                path = pathfinding.FindPath(new int2(xStart, yStart), new int2(x, y), grid);
+                pathIndex = 1;
+            }
 
-                if (random >= 13 && random <= 18)
-                {
-                    GameObject Item = Instantiate(item3, transform.position, Quaternion.identity);
-                }
+            if (path == null || path.Length == 0) return;
+            Vector2 target_path = new Vector2(path[pathIndex].x * cellSize + cellSize / 2, path[pathIndex].y * cellSize + cellSize / 2);
+            float distance = Vector2.Distance(transform.position, target_path);
+            Vector2 direction = target_path - (Vector2)transform.position;
 
-                if (random >= 19 && random <= 25)
+            transform.position = Vector2.MoveTowards(transform.position, target_path, speed * Time.deltaTime);
+
+            if (pathIndex < path.Length - 1 && (distance < 0.1f))
+            {
+                pathIndex++;
+            }
+
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+
+                random = UnityEngine.Random.Range(0, 100);
+                if (random <= chance)
                 {
-                    GameObject Item = Instantiate(item4, transform.position, Quaternion.identity);
+                    if (random <= 6)
+                    {
+                        GameObject Item = Instantiate(item1, transform.position, Quaternion.identity);
+                    }
+
+                    if (random >= 7 && random <= 12)
+                    {
+                        GameObject Item = Instantiate(item2, transform.position, Quaternion.identity);
+                    }
+
+                    if (random >= 13 && random <= 18)
+                    {
+                        GameObject Item = Instantiate(item3, transform.position, Quaternion.identity);
+                    }
+
+                    if (random >= 19 && random <= 25)
+                    {
+                        GameObject Item = Instantiate(item4, transform.position, Quaternion.identity);
+                    }
                 }
             }
+        } else {
+            stunCounter -= 1;
         }
     }
-    
+
+    public void Stun(int ticks){
+        if ((Vector2.Distance(transform.position, companionLink.transform.position)<= 1.5f) && (stunCounter==0)){
+            stunCounter=ticks;
+            TakeDamege(2);
+        }
+    }
+
     public void TakeDamege(int damage)
     {
         health -= damage;
