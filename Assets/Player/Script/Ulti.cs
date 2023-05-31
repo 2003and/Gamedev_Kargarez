@@ -45,7 +45,7 @@ namespace GoodiesForFollowing
 
         void Update()
         {
-            if (Input.GetButtonDown("Fire1") && !isThrown && CDown<=0)
+            if (Input.GetButtonDown("Fire2") && !isThrown && CDown<=0)
             {
                 Debug.Log("pisyapopa");
                 //Начинает кастовать
