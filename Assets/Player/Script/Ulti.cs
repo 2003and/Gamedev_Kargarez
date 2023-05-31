@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using static enemyManager;
 
 namespace GoodiesForFollowing
 {
 
     public class Ulti : MonoBehaviour
     {
-        public Karga_1 kargaLink;
+        public enemyManager enemyLink;
         public Transform firepoint;
         public GameObject Companion;
         public Rigidbody2D rb;
@@ -69,9 +69,10 @@ namespace GoodiesForFollowing
                 //И когда дистанция сократилась достаточно...
                 transform.position = Vector2.MoveTowards(startPosition, endPosition, FlySpeed * Time.deltaTime);
                 if ((Vector2.Distance(transform.position, endPosition) < 0.5f) || (Vector2.Distance(transform.position, veryFirstStartPosition) > 5f)){
-                    if (kargaLink ?? false){
-                        kargaLink.Stun(100);
-                    }
+                    // if (enemyLink ?? false){
+                    //     enemyLink.instance.stunAll();
+                    // }
+                    enemyManager.instance.stunAll();
                     //То состояние "Кастую ульту" выключается
                     CDown=CDownDefaultTicks;
                     isThrown = false;
