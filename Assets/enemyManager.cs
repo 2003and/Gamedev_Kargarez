@@ -30,7 +30,9 @@ public class enemyManager : MonoBehaviour
     public void stunAll() {
         foreach (var i in allChildren)
         {
-            i.gameObject.GetComponent<Karga_1>().Stun(100);
+            if (i ?? false) {
+                i.gameObject.GetComponent<Karga_1>().Stun(100);
+            }
         }
     }
 }
