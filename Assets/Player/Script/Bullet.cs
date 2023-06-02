@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float destroyTime;
     public float speed;
-    public int damage;
+    public float damage;
     public LayerMask WhatIsSolid;
     
     void Start()

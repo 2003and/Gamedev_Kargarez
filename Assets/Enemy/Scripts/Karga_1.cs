@@ -106,7 +106,22 @@ public class Karga_1 : MonoBehaviour
                 pathIndex++;
             }
 
-            if (health <= 0)
+        } else {
+            stunCounter -= 1;
+        }
+    }
+
+    public void Stun(int ticks){
+        if ((Vector2.Distance(transform.position, companionLink.transform.position)<= 1.5f) && (stunCounter==0)){
+            stunCounter=ticks;
+            TakeDamege(2);
+        }
+    }
+
+    public void TakeDamege(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
             {
                 Destroy(gameObject);
 
@@ -134,21 +149,6 @@ public class Karga_1 : MonoBehaviour
                     }
                 }
             }
-        } else {
-            stunCounter -= 1;
-        }
-    }
-
-    public void Stun(int ticks){
-        if ((Vector2.Distance(transform.position, companionLink.transform.position)<= 1.5f) && (stunCounter==0)){
-            stunCounter=ticks;
-            TakeDamege(2);
-        }
-    }
-
-    public void TakeDamege(int damage)
-    {
-        health -= damage;
     }
 }
 
